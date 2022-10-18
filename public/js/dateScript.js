@@ -2,7 +2,7 @@ let date = getDate();
 let day = getDay();
 
 
-document.getElementById(".footer-msg").innerHTML = date;
+$(".footer-msg").innerHTML = date;
 
 /*
  * Gets the full date
