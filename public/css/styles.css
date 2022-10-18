@@ -1,0 +1,142 @@
+/***** TAG SELECTORS *****/
+body{
+
+  font-family: 'Red Hat Display', sans-serif;
+  color: #3C2317;
+  background-color: #FAF7F0;
+}
+
+p{
+
+  margin: auto;
+  font-size: 1.5rem;
+  font-weight: 200;
+  max-width: 500px;
+}
+
+
+
+
+
+/***** TITLE SECTION *****/
+#title{
+
+  color: #3C2317;
+  padding: 2%;
+  background-image: -webkit-linear-gradient(45deg, #B4CDE6 25%, #F5EFE6 75%);
+}
+
+#navigation, .navbar, .navbar-collapse{
+
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+.nav-link, .nav-item{
+
+  font-size: 1.5rem;
+  margin-left: 20px;
+}
+
+a:hover{
+
+  text-decoration: underline;
+}
+
+
+
+
+
+/***** TASK LIST SECTION *****/
+#tasklist{
+
+  background-color: #F5EFE6;
+}
+
+.box{
+
+  width: 40%;
+  margin: auto auto;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#list-title{
+
+  background-color: #B4CDE6;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+.list-item{
+
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #3C2317;
+}
+
+.task-name{
+
+  width: 100%;
+}
+
+#add-form, #remove-form{
+
+  text-align: center;
+  display: flex;
+  width: 100%;
+  padding: 0;
+}
+
+button {
+
+  border-color: transparent;
+  background-color: #F5EFE6;
+  font-size: 30px;
+}
+
+button:hover{
+
+  opacity: 70%;
+}
+
+.fa-circle-plus{
+
+  color: #B4CDE6;
+  margin-right: 20px;
+}
+
+.fa-circle-minus{
+
+  color: #B73E3E;
+  margin-right: 20px;
+}
+
+input[type="text"] {
+
+  text-align: center;
+  height: 70px;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  font-weight: 200;
+  width: 100%;
+}
+
+input[type="text"]:focus{
+
+  outline: none;
+}
+
+
+
+
+
+/***** FOOTER SECTION *****/
+.footer-msg{
+
+  font-size: 1.2rem;
+  margin: 3% auto;
+  text-align: center;
+}
