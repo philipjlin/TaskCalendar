@@ -1,6 +1,9 @@
 let date = getDate();
 let day = getDay();
 
+alert("test");
+alert(date);
+
 
 $(".footer-msg").innerHTML = date;
 
