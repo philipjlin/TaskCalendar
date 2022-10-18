@@ -1,11 +1,8 @@
 let date = getDate();
 let day = getDay();
 
-alert("test");
-alert(date);
 
-
-$(".footer-msg").innerHTML = date;
+$(".footer-msg").html(date);
 
 /*
  * Gets the full date
