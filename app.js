@@ -2,7 +2,6 @@
 let path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
-const $ = require('jquery');
 const dateModule = require(path.join(__dirname, "dateModule.js"));  //Require local js file
 
 const app = express();
