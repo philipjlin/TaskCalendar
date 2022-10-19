@@ -1,8 +1,12 @@
+/*
+ * Main server with routes
+ */
+
 //Required packages
 let path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
-const dateModule = require(path.join(__dirname, "dateModule.js"));  //Require local js file
+const countModule = require(path.join(__dirname, "countModule.js"));  //Required local module
 
 const app = express();
 
@@ -15,6 +19,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Allows use of static files in public directory (css, images)
 app.use(express.static(path.join(__dirname, "public")));
 
+
+
+
+
 //Lists for each day of the week
 let mondayList = ["Fill out this list"];
 let tuesdayList = ["Fill out this list"];
@@ -24,8 +32,7 @@ let fridayList = ["Fill out this list"];
 let saturdayList = ["Fill out this list"];
 let sundayList = ["Fill out this list"];
 
-//Current date
-let date = dateModule.getDate();
+
 
 
 
@@ -37,10 +44,8 @@ let date = dateModule.getDate();
  */
 app.listen(process.env.PORT || "3000", function(req, res){
 
-  console.log("Listening on localhost:3000)");
+  console.log("Listening on web server or localhost:3000)");
 });
-
-
 
 
 
@@ -50,48 +55,39 @@ app.listen(process.env.PORT || "3000", function(req, res){
  *
  */
 app.get("/", function(req, res){
+  //Client side dateScript will reroute to current day
+  res.render("list", {listTitle: "", taskList: [], taskCount: 0});
+});
 
-  let currentDay = dateModule.getDay();
-  let listToPass = currentDay.toLowerCase() + "List"; //String name of list
-  listToPass = eval(listToPass); //Convert string name to actual list array
-
-  res.render("list", {currentDate: date, listTitle: currentDay, taskList: listToPass});
+app.get("/sunday", function(req, res){
+  res.render("list", {listTitle: "Sunday", taskList: sundayList, taskCount: countModule.countTasks(sundayList) });
 });
 
 app.get("/monday", function(req, res){
 
-  res.render("list", {currentDate: date, listTitle: "Monday", taskList: mondayList});
+  res.render("list", { listTitle: "Monday", taskList: mondayList, taskCount: countModule.countTasks(mondayList) });
 });
 
 app.get("/tuesday", function(req, res){
-
-  res.render("list", {currentDate: date, listTitle: "Tuesday", taskList: tuesdayList});
+  res.render("list", {listTitle: "Tuesday", taskList: tuesdayList, taskCount: countModule.countTasks(tuesdayList) });
 });
 
 app.get("/wednesday", function(req, res){
-
-  res.render("list", {currentDate: date, listTitle: "Wednesday", taskList: wednesdayList});
+  res.render("list", {listTitle: "Wednesday", taskList: wednesdayList, taskCount: countModule.countTasks(wednesdayList) });
 });
 
 app.get("/thursday", function(req, res){
-
-  res.render("list", {currentDate: date, listTitle: "Thursday", taskList: thursdayList});
+  res.render("list", {listTitle: "Thursday", taskList: thursdayList, taskCount: countModule.countTasks(thursdayList) });
 });
 
 app.get("/friday", function(req, res){
-
-  res.render("list", {currentDate: date, listTitle: "Friday", taskList: fridayList});
+  res.render("list", {listTitle: "Friday", taskList: fridayList, taskCount: countModule.countTasks(fridayList) });
 });
 
 app.get("/saturday", function(req, res){
-
-  res.render("list", {currentDate: date, listTitle: "Saturday", taskList: saturdayList});
+  res.render("list", {listTitle: "Saturday", taskList: saturdayList, taskCount: countModule.countTasks(saturdayList) });
 });
 
-app.get("/sunday", function(req, res){
-
-  res.render("list", {currentDate: date, listTitle: "Sunday", taskList: sundayList});
-});
 
 
 

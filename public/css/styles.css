@@ -68,6 +68,13 @@ a:hover{
   margin-bottom: 2%;
 }
 
+.count{
+
+  color: #F5EFE6;
+  font-size: 1rem;
+  padding: 2%;
+}
+
 .list-item{
 
   min-height: 70px;
@@ -134,9 +141,11 @@ input[type="text"]:focus{
 
 
 /***** FOOTER SECTION *****/
-.footer-msg{
+#footer, .footer-msg{
 
-  font-size: 1.2rem;
+  color: black;
+  font-size: 1.5rem;
   margin: 3% auto;
   text-align: center;
+  text-decoration: none;
 }

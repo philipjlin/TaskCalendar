@@ -1,11 +1,36 @@
+//Script variables
 let date = getDate();
-let day = getDay();
-
-
-$(".footer-msg").html(date);
+let dayName = getDay();
 
 /*
- * Gets the full date
+ * GET request redirect for home route
+ * Changes the home route view to the current day view
+ */
+$.get({
+  url: "/",
+  type: "GET",
+  data: { "day" : dayName },
+  datatype: "json",
+  success: function(response) {
+
+      let base_url = window.location.origin + "/";
+      let current_url = window.location.href;
+
+      if( current_url == base_url )
+        window.location.href = "/" + dayName.toLowerCase();
+  }
+});
+
+
+//JQuery to update footer message with current date
+$(".footer-msg").html("Today is " + date);
+
+
+
+
+
+/*
+ * Gets the full date (Monday, January 1)
  *
  */
 function getDate(){
@@ -23,8 +48,9 @@ function getDate(){
 }
 
 
+
 /*
- * Gets current day of the week
+ * Gets current day of the week (Monday)
  *
  */
 function getDay(){

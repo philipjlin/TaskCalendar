@@ -65,7 +65,14 @@
     <!-- List title -->
     <div class="box" id="list-title">
       <h1> <%= listTitle %> </h1>
+
+      <% if( taskCount != 0 ){    %>
+        <p class="count"> Tasks Remaining: <%= taskCount %> </p>
+      <% } else{                  %>
+        <p class="count"> All Tasks Completed! </p>
+      <% }                        %>
     </div>
+
 
     <!-- Task list -->
     <div class="box" id="tasklist">
@@ -115,11 +122,9 @@
 
   <!-- Footer section that uses passed currentDate -->
   <section id="footer">
-    <!-- <p class="footer-msg"> Today is <%= currentDate %> </p> -->
-    <p class="footer-msg">
-
-    </p>
+    <a class="footer-msg" href="/"> Today's Date </a>
   </section>
+
 
 
   <!-- JQuery -->
