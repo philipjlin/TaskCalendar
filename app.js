@@ -62,6 +62,7 @@ app.get("/", function(req, res){
   res.render("list", {listTitle: "", taskList: [], taskCount: 0});
 });
 
+//Render based on query parameter day
 app.get("/:day", function(req, res){
 
   let day = req.params.day;
