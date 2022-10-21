@@ -23,6 +23,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
+/*
+ * App variables
+ */
 //Lists for each day of the week
 let mondayList = ["Fill out this list"];
 let tuesdayList = ["Fill out this list"];
@@ -59,35 +62,13 @@ app.get("/", function(req, res){
   res.render("list", {listTitle: "", taskList: [], taskCount: 0});
 });
 
-app.get("/sunday", function(req, res){
-  res.render("list", {listTitle: "Sunday", taskList: sundayList, taskCount: countModule.countTasks(sundayList) });
+app.get("/:day", function(req, res){
+
+  let day = req.params.day;
+  let list = eval(day + "List");
+
+  res.render("list", {listTitle: day[0].toUpperCase()+day.substring(1), taskList: list, taskCount: countModule.countTasks(list) });
 });
-
-app.get("/monday", function(req, res){
-
-  res.render("list", { listTitle: "Monday", taskList: mondayList, taskCount: countModule.countTasks(mondayList) });
-});
-
-app.get("/tuesday", function(req, res){
-  res.render("list", {listTitle: "Tuesday", taskList: tuesdayList, taskCount: countModule.countTasks(tuesdayList) });
-});
-
-app.get("/wednesday", function(req, res){
-  res.render("list", {listTitle: "Wednesday", taskList: wednesdayList, taskCount: countModule.countTasks(wednesdayList) });
-});
-
-app.get("/thursday", function(req, res){
-  res.render("list", {listTitle: "Thursday", taskList: thursdayList, taskCount: countModule.countTasks(thursdayList) });
-});
-
-app.get("/friday", function(req, res){
-  res.render("list", {listTitle: "Friday", taskList: fridayList, taskCount: countModule.countTasks(fridayList) });
-});
-
-app.get("/saturday", function(req, res){
-  res.render("list", {listTitle: "Saturday", taskList: saturdayList, taskCount: countModule.countTasks(saturdayList) });
-});
-
 
 
 
@@ -109,6 +90,7 @@ app.post("/", function(req, res){
 
     res.redirect("/" + currentList.toLowerCase()); //Redirect to view
   }
+
 
   // POST request came from remove submit button
   if( req.body.remove != null ){
