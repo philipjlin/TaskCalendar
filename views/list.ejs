@@ -78,37 +78,37 @@
     <div class="box" id="tasklist">
 
       <!-- EJS code to loop through taskList (selected based on route) and populate list -->
-      <%   for(var i=0; i<taskList.length; i++){   %>
+      <%   taskList.forEach( function(task) {   %>
 
               <!-- Individual list item -->
               <div class="list-item">
 
                 <!-- POST request form for remove button -->
-                <form id="remove-form" action="/" method="post">
+                <form id="remove-form" action="/remove" method="post">
 
-                  <p class="task-name"> <%= taskList[i] %> </p>
+                  <p class="task-name"> <%= task.task %> </p>
 
                   <!-- Hidden field used to pass listTitle to js on POST request -->
-                  <input type=hidden name="removeList" value=<%= listTitle %>>
+                  <input type=hidden name="removeList" value="<%= listTitle %>">
 
                   <!-- Submit button used to pass task to remove to js on POST request -->
-                  <button type="submit" class="submit-btn" name="remove" value=<%= taskList[i] %>>
+                  <button type="submit" class="submit-btn" name="removeId" value="<%= task._id %>">
                     <i class="fa-solid fa-circle-minus"></i>
                   </button>
 
                 </form>
 
               </div>
-      <%   }                                         %>
+      <%   })                                         %>
 
       <!-- POST request form for add button -->
       <form id="add-form" action="/" method="post">
 
         <!-- Add task input form -->
-        <input type="text" id="input" name="task" placeholder="ADD TASK" maxlength="32" autocomplete="off" />
+        <input type="text" id="input" name="addTask" placeholder="ADD TASK" maxlength="32" />
 
         <!-- Submit button used to pass list title of added task to js on POST request -->
-        <button type="submit" class="submit-btn" name="addList" value=<%= listTitle %>>
+        <button type="submit" class="submit-btn" name="addList" value="<%= listTitle %>">
           <i class="fa-solid fa-circle-plus"></i>
         </button>
 
