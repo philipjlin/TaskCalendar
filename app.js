@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Mongoose
 //mongoose.connect("mongodb://localhost:27017/tasklist");
-mongoose.connect("mongodb+srv://admin:adminpassword@philipjlin.9wd1zfh.mongodb.net/tasklist");
+mongoose.connect("mongodb+srv://admin:adminpassword@philipjlin.zrd36po.mongodb.net/tasklist");
 
 
 
