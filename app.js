@@ -45,7 +45,7 @@ const taskSchema = new mongoose.Schema({
 });
 
 //Model for mongodb database
-const Task = mongoose.model("Task", taskSchema);
+const Task = mongoose.model("Task", taskSchema);  //Create "tasks" collection in db
 
 //(Sample) document to add to database
 let sampleTask = new Task({
