@@ -1,6 +1,8 @@
 /*
  * Main server
  */
+//Env variables
+require('dotenv').config();
 
 //Required packages
 const path = require("path");
@@ -22,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Mongoose
 //mongoose.connect("mongodb://localhost:27017/tasklist");
-mongoose.connect("mongodb+srv://admin:adminpassword@philipjlin.zrd36po.mongodb.net/tasklist");
+mongoose.connect(process.env.MONGODB_ROOT + "tasklist");
 
 
 
@@ -56,17 +58,12 @@ let sampleTask = new Task({
 
 
 
-/******************** APP VARIABLES ********************/
-
-
-
-
 
 
 /******************** SERVER ROUTES ********************/
 /*
  * LISTEN route
- * process.env.port listens for Heroku server
+ * process.env.port listens for live server
  * local port 3000 for testing
  *
  */
@@ -77,11 +74,13 @@ app.listen(process.env.PORT || "3000", function(req, res){
 
 
 
+
+
 /*
  * GET routes
  *
- *
  */
+ //Home route
 app.get("/", function(req, res){
 
   //NOTE: client-side dateScript.js will reroute default route to current day route using client time zone
@@ -91,7 +90,7 @@ app.get("/", function(req, res){
 
 
 
-//Render based on query parameter day
+//Route based on query parameter day
 app.get("/:day", function(req, res){
 
   let day = req.params.day;
@@ -99,7 +98,13 @@ app.get("/:day", function(req, res){
   //Find tasks in database of certain day
   Task.find({ day:day }, function(err, foundTasks){
 
-    res.render("list", {listTitle: day[0].toUpperCase()+day.substring(1), taskList: foundTasks, taskCount: countModule.countTasks(foundTasks) });
+    if( err ){
+
+      console.log(err);
+      res.redirect("/");
+    }
+    else
+      res.render("list", {listTitle: day[0].toUpperCase()+day.substring(1), taskList: foundTasks, taskCount: countModule.countTasks(foundTasks) });
   });
 
 });
