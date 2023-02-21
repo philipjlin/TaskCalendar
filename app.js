@@ -1,5 +1,5 @@
 /*
- * Main server
+ * Task Calendar - Main server
  */
 //Env variables
 require('dotenv').config();
